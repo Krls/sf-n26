@@ -57,16 +57,6 @@
         <name>CustomObject</name>
     </types>
     <types>
-        <members>LeadSource</members>
-        <members>LeadStatus</members>
-        <members>CaseType</members>
-        <members>CaseReason</members>
-        <members>CasePriority</members>
-        <members>CaseOrigin</members>
-        <members>CaseStatus</members>
-        <name>StandardValueSet</name>
-    </types>
-    <types>
         <members>*</members>  
         <name>BusinessProcess</name>
     </types>
@@ -85,10 +75,6 @@
     <types>
         <members>*</members>
         <name>RecordType</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>RemoteSiteSetting</name>
     </types>
     <types>
         <members>*</members>
