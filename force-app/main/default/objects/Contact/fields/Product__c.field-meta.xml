@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Country__c</fullName>
-    <description>List of available countries</description>
+    <fullName>Product__c</fullName>
+    <description>Product contracted by the contact.</description>
     <externalId>false</externalId>
-    <label>Country</label>
+    <label>Product</label>
     <required>false</required>
-    <trackTrending>false</trackTrending>
+    <trackFeedHistory>false</trackFeedHistory>
     <type>Picklist</type>
     <valueSet>
         <restricted>true</restricted>
-        <valueSetName>Country</valueSetName>
+        <valueSetName>Product</valueSetName>
     </valueSet>
 </CustomField>

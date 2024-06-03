@@ -26,6 +26,6 @@
         <label>UK</label>
     </customValue>
     <description>List of home countries available in the system.</description>
-    <masterLabel>Conutry</masterLabel>
+    <masterLabel>Country</masterLabel>
     <sorted>false</sorted>
 </GlobalValueSet>
