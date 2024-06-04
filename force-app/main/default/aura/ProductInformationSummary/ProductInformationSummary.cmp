@@ -1,0 +1,32 @@
+<aura:component controller="ProductInformationSummayController" implements="flexipage:availableForRecordHome,force:hasRecordId">
+    
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="data" type="Object"/>
+    <aura:attribute name="columns" type="List"/>
+    <aura:attribute name="showSpinner" type="Boolean" default="false"/>
+    <aura:attribute name="showMessage" type="Boolean" default="false"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <div class="slds-col modal-header slds-modal__header">
+        <h4 class="title slds-text-heading_medium">Product information</h4>
+    </div>
+
+    <div class="slds-modal__content slds-p-around--x-small slds-align_absolute-center slds-size_1-of-1 slds-is-relative">
+
+        <aura:if isTrue="{!v.showSpinner}">
+            <lightning:spinner alternativeText="Loading" size="medium" />
+        </aura:if>
+
+        <aura:if isTrue="{!v.data != null}">
+            <div style="height: 300px">
+                <lightning:datatable
+                        keyField="comission"
+                        data="{!v.data}"
+                        columns="{!v.columns}"
+                        hideCheckboxColumn="true"/>
+            </div>
+        </aura:if>
+        //TODO: Add message.
+    </div>
+     
+</aura:component>
