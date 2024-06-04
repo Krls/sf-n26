@@ -7,9 +7,7 @@ public with sharing class ProductInformationSummayController {
 
             //TODO: move to selector layer.
             Case currentCase = [SELECT contact.id FROM case WHERE id = :caseId];
-            System.debug(currentCase);
             Contact currentContact = [SELECT Product__c, Home_Country__c FROM Contact WHERE id = :currentCase.contact.Id];
-            System.debug(currentContact);
             List<Product_Information__c> productInfoList = [SELECT Commission__c, Value__c 
                                                             FROM Product_Information__c 
                                                             WHERE Country__c = :currentContact.Home_Country__c AND 
