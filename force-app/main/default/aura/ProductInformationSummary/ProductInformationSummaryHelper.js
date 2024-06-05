@@ -14,10 +14,17 @@
                 var response =  response.getReturnValue();
                 if(response != null){
                     component.set("v.data",response);
+                } else {
+
                 }
-            }
-            if( state == 'ERROR' ){
-                //TODO:Show error message
+            } else {
+                var toastEvent = $A.get("e.force:showToast");
+                toastEvent.setParams({
+                    "title": "Error!",
+                    "type":"error",
+                    "message": "An error ocurred trying to get Product information, please ask your admin for help."
+                });
+                toastEvent.fire();
             }
         });
         $A.enqueueAction(action);
