@@ -18,20 +18,23 @@ global without sharing class REST_ContactProductInformation {
         if(contactIdentifier != null &&
             !String.isEmpty(contactIdentifier)){
             //TODO: Try to add the selector layer.
-            Contact currentContact = [SELECT Product__c, Home_Country__c FROM Contact WHERE UUID__c = :contactIdentifier];
-            //TODO: Check if contact exist.
-            List<Product_Information__c> productInfoList = [SELECT Commission__c, Value__c 
-                                                            FROM Product_Information__c 
-                                                            WHERE Country__c = :currentContact.Home_Country__c AND 
-                                                            Product__c = :currentContact.Product__c];
-            
-            ProductInformationWrapperList productList = generateResponse(contactIdentifier, productInfoList);
-            response.statusCode = 200;
-            response.responseBody = Blob.valueOf(JSON.serialize(productList));
+            try{
+                Contact currentContact = [SELECT Product__c, Home_Country__c FROM Contact WHERE UUID__c = :contactIdentifier];
+                List<Product_Information__c> productInfoList = [SELECT Commission__c, Value__c 
+                FROM Product_Information__c 
+                WHERE Country__c = :currentContact.Home_Country__c AND 
+                Product__c = :currentContact.Product__c];
+
+                ProductInformationWrapperList productList = generateResponse(contactIdentifier, productInfoList);
+                response.statusCode = 200;
+                response.responseBody = Blob.valueOf(JSON.serialize(productList));
+            } catch (QueryException ex){
+                response.statusCode = 404;
+                response.responseBody = Blob.valueOf(JSON.serialize(new Error(ERROR_STATUS, ERROR_MESSAGE)));                
+            }
         } else {
             response.statusCode = 400;
             response.responseBody = Blob.valueOf(JSON.serialize(new Error(ERROR_STATUS, ERROR_MESSAGE)));
-
         }
     }
 
@@ -59,7 +62,7 @@ global without sharing class REST_ContactProductInformation {
 
     public class ProductInformationWrapperList{
         public String contactIdentifier;
-        List<ProductInformationWrapper> productInformationList;
+        public List<ProductInformationWrapper> productInformationList;
     }
 
     public class ProductInformationWrapper{
