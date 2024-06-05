@@ -1,3 +1,6 @@
+/**
+ * ContactSelectorI implementation.
+ */
 public with sharing class ContactSelector implements ContactSelectorI {
 
     private static ContactSelectorI instance;

@@ -1,6 +1,6 @@
 <aura:documentation>
 	<aura:description>Documentation</aura:description>
-	<aura:example name="ExampleName" ref="exampleComponentName" label="Label">
-		Example Description
+	<aura:example name="ProductInformation" ref="ProductInformationSummary" label="Label">
+		This aura component is about to show the product information of the contact related to a case on the case page layout.
 	</aura:example>
 </aura:documentation>

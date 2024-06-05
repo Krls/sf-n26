@@ -1,3 +1,6 @@
+/**
+ * Controller for the ProductInformationSummay aura component.
+ */
 public with sharing class ProductInformationSummayController {
     
     @AuraEnabled

@@ -1,3 +1,6 @@
+/**
+ * API Rest to get contact information.
+ */
 @RestResource(urlMapping='/contact/v0/*')
 global without sharing class REST_ContactProductInformation {
 

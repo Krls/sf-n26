@@ -1,3 +1,6 @@
+/**
+ * ProductInformationSelectorI implementation
+ */
 public with sharing class ProductInformationSelector implements ProductInformationSelectorI{
 
     private static ProductInformationSelectorI instance;
