@@ -18,6 +18,7 @@ public class ProductInformationSummayControllerTest {
         newContact.LastName = 'Monzonis';
         newContact.Product__c = 'Standard';
         newContact.Home_Country__c = 'DE';
+        newContact.UUID__c = 'UWHUDEIhiahiedu';
         insert newContact;
 
         Case newCase = new Case();
@@ -40,6 +41,7 @@ public class ProductInformationSummayControllerTest {
         newContact.LastName = 'Monzonis';
         newContact.Product__c = 'Standard';
         newContact.Home_Country__c = 'DE';
+        newContact.UUID__c = 'UWHUDEIhiahiedu';
         insert newContact;
 
         Case newCase = new Case();
