@@ -17,13 +17,12 @@ global without sharing class REST_ContactProductInformation {
 
         if(contactIdentifier != null &&
             !String.isEmpty(contactIdentifier)){
-            //TODO: Try to add the selector layer.
             try{
-                Contact currentContact = [SELECT Product__c, Home_Country__c FROM Contact WHERE UUID__c = :contactIdentifier];
-                List<Product_Information__c> productInfoList = [SELECT Commission__c, Value__c 
-                FROM Product_Information__c 
-                WHERE Country__c = :currentContact.Home_Country__c AND 
-                Product__c = :currentContact.Product__c];
+                ContactSelectorI contactSelector = ContactSelector.getInstance();
+                Contact currentContact = contactSelector.getContactByInternalID(contactIdentifier);
+                
+                ProductInformationSelectorI proInfSelector = ProductInformationSelector.getInstance();
+                List<Product_Information__c> productInfoList = proInfSelector.getProductInformationListByProductAndCountry(currentContact.Product__c, currentContact.Home_Country__c);
 
                 ProductInformationWrapperList productList = generateResponse(contactIdentifier, productInfoList);
                 response.statusCode = 200;

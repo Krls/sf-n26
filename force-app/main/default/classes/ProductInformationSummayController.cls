@@ -3,16 +3,16 @@ public with sharing class ProductInformationSummayController {
     @AuraEnabled
     public static List<ProductConfiguration> getProductInformationByCase(String caseId){
         try {
+            CaseSelectorI caseSelector = CaseSelector.getInstance();
+            Case currentCase = caseSelector.getCaseByStringID(caseId);
+
+            ContactSelectorI contactSelector = ContactSelector.getInstance();
+            Contact currentContact = contactSelector.getContactById(currentCase.contact.Id);
+            
+            ProductInformationSelectorI proInfSelector = ProductInformationSelector.getInstance();
+            List<Product_Information__c> productInfoList = proInfSelector.getProductInformationListByProductAndCountry(currentContact.Product__c, currentContact.Home_Country__c);
+            
             List<ProductConfiguration> result = null;
-
-            //TODO: move to selector layer.
-            Case currentCase = [SELECT contact.id FROM case WHERE id = :caseId];
-            Contact currentContact = [SELECT Product__c, Home_Country__c FROM Contact WHERE id = :currentCase.contact.Id];
-            List<Product_Information__c> productInfoList = [SELECT Commission__c, Value__c 
-                                                            FROM Product_Information__c 
-                                                            WHERE Country__c = :currentContact.Home_Country__c AND 
-                                                            Product__c = :currentContact.Product__c];
-
             if(productInfoList?.size()>0){
                 result = new List<ProductConfiguration> ();
                 for(Product_Information__c pi : productInfoList){
